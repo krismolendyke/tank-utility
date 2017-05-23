@@ -17,11 +17,11 @@ def _get_parser():
 
     """
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("--version", action="version", version=__version__)
-    parser.add_argument("--username", "-u", help="Username", default=os.environ.get("TANK_UTILITY_USERNAME", ""))
-    parser.add_argument("--password", "-p", help="Password", default=os.environ.get("TANK_UTILITY_PASSWORD", ""))
-    parser.add_argument("--verbose", "-v", help="Print debugging information", action="store_true")
+    parser.add_argument("--username", help="Username", default=os.environ.get("TANK_UTILITY_USERNAME", ""))
+    parser.add_argument("--password", help="Password", default=os.environ.get("TANK_UTILITY_PASSWORD", ""))
     parser.add_argument("--pretty", help="Pretty print data", action="store_true")
+    parser.add_argument("--verbose", help="Print debugging information", action="store_true")
+    parser.add_argument("--version", action="version", version=__version__)
     return parser
 
 
