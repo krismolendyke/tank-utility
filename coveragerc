@@ -1,0 +1,8 @@
+;;; -*- mode: conf; -*-
+
+[run]
+include = src/*
+
+[report]
+include = src/*
+show_missing = True
