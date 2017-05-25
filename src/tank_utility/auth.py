@@ -36,7 +36,7 @@ def _get_cached_token():
         with open(TOKEN_FILE_PATH, "r") as f:
             token = f.read()
     except FileNotFoundError:
-        logging.info(f"No existing file '{TOKEN_FILE_PATH}'")
+        logging.info("No existing file %s", TOKEN_FILE_PATH)
     return token
 
 
@@ -49,11 +49,11 @@ def _cache_token(token):
     try:
         os.remove(TOKEN_FILE_PATH)
     except FileNotFoundError:
-        logging.info(f"No existing file '{TOKEN_FILE_PATH}'")
+        logging.info("No existing file %s", TOKEN_FILE_PATH)
     with umask(0o077):
         with open(TOKEN_FILE_PATH, "w") as f:
             f.write(token)
-        logging.info(f"Cached token in '{TOKEN_FILE_PATH}'")
+        logging.info("Cached token in %s", TOKEN_FILE_PATH)
 
 
 def get_token(username, password, force=False):

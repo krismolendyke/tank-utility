@@ -1,6 +1,10 @@
 """Common functions."""
 
-from urllib.parse import SplitResult, urlencode, urlunsplit
+try:
+    from urllib.parse import SplitResult, urlencode, urlunsplit
+except ImportError:
+    from urllib import urlencode
+    from urlparse import SplitResult, urlunsplit
 
 PROPANE_API_PROTOCOL = "https"
 PROPANE_API_LOCATION = "data.tankutility.com"

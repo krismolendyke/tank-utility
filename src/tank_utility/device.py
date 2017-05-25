@@ -28,7 +28,7 @@ def get_device_data(token, device):
     :raises requests.exceptions.HTTPError:
 
     """
-    response = requests.get(common.get_api_url(token=token, path=f"devices/{device}"))
+    response = requests.get(common.get_api_url(token=token, path="devices/" + device))
     response.raise_for_status()
     return response.json()
 

@@ -22,16 +22,23 @@ setup(
     url="https://git.io/k20e",
     license="MIT",
     classifiers=[
+        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.6"
     ],
     keywords="propane monitor",
     packages=find_packages("src"),
     package_dir={"": "src"},
-    install_requires=["requests>=2.0", "urllib3[secure]"],
+    install_requires=[
+        "requests>=2.0",
+        "urllib3[secure]"
+    ],
     extras_require={
+        "dev": [
+            "bumpversion"
+        ],
         "test": [
-            "bumpversion",
             "coverage",
+            "mock",
             "responses",
             "tox"
         ],
@@ -40,5 +47,5 @@ setup(
     include_package_data=True,
     data_files=[],
     test_suite="tests",
-    python_requires=">=3.6",
-    entry_points={"console_scripts": ["tank-utility = tank_utility.__main__:main", ], }, )
+    entry_points={"console_scripts": ["tank-utility = tank_utility.__main__:main"]}
+)

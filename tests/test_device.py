@@ -3,8 +3,8 @@
 import os
 import tempfile
 import unittest
-import unittest.mock
 
+import mock
 import requests
 import responses
 
@@ -43,7 +43,7 @@ class DeviceTestCase(unittest.TestCase):
 
     def test_get_data_retry(self):
         with responses.RequestsMock(assert_all_requests_are_fired=True) as rsps, \
-             unittest.mock.patch("tank_utility.device.auth._get_cached_token", autospec=True) as cached_token_mock:
+             mock.patch("tank_utility.device.auth._get_cached_token", autospec=True) as cached_token_mock:
             rsps.add(responses.GET, common.get_api_url(path="getToken"), status=requests.codes.ok,
                      json={"token": "expired-token"})
             rsps.add(responses.GET, common.get_api_url(path="devices"), status=requests.codes.unauthorized,

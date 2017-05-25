@@ -22,7 +22,7 @@ help:
 
 .PHONY: install-requirements
 install-requirements:
-	$(PIP) install --editable .[test]
+	$(PIP) install --editable .[dev,test]
 
 .PHONY: test
 test:
