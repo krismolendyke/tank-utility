@@ -13,6 +13,11 @@
     - id: pylint
       args: [src/tank_utility]
 
+- repo: git://github.com/FalconSocial/pre-commit-python-sorter
+  sha: 1.0.4
+  hooks:
+    - id: python-import-sorter
+
 - repo: git://github.com/pre-commit/mirrors-yapf
   sha: v0.16.1
   hooks:
