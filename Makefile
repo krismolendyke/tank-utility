@@ -1,12 +1,13 @@
-PIP      := pip
-PYLINT   := pylint
-PYTHON   := python
-RM       := rm
-RM_FLAGS := -rf
-SETUP    := setup.py
-TOX      := tox
-TOX_DIR  := .tox
-YAPF     := yapf
+PIP        := pip
+PRE_COMMIT := pre-commit
+PYLINT     := pylint
+PYTHON     := python
+RM         := rm
+RM_FLAGS   := -rf
+SETUP      := setup.py
+TOX        := tox
+TOX_DIR    := .tox
+YAPF       := yapf
 
 build_dir    := build
 dist_dir     := dist
@@ -27,6 +28,7 @@ help:
 .PHONY: install-requirements
 install-requirements:
 	$(PIP) install --editable .[dev,test]
+	$(PRE_COMMIT) install
 
 .PHONY: lint
 lint:

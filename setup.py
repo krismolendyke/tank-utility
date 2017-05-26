@@ -36,6 +36,7 @@ setup(
         "dev": [
             "bumpversion",
             "pylint",
+            "pre-commit",
             "yapf"
         ],
         "test": [
