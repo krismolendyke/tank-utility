@@ -34,7 +34,8 @@ setup(
     ],
     extras_require={
         "dev": [
-            "bumpversion"
+            "bumpversion",
+            "pylint"
         ],
         "test": [
             "coverage",

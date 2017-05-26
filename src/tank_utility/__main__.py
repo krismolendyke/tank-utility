@@ -5,7 +5,6 @@ import json
 import os
 
 from . import __version__
-from . import auth
 from . import device
 
 

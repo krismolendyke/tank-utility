@@ -50,7 +50,7 @@ def get_data(username, password):
     try:
         devices = get_devices(token)
     except requests.exceptions.HTTPError as e:
-        if e.response.status_code == requests.codes.unauthorized:
+        if e.response.status_code == requests.codes.unauthorized:  # pylint: disable=no-member
             devices = get_devices(auth.get_token(username, password, force=True))
         else:
             raise e

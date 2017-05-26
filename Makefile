@@ -1,4 +1,5 @@
 PIP      := pip
+PYLINT   := pylint
 PYTHON   := python
 RM       := rm
 RM_FLAGS := -rf
@@ -6,10 +7,12 @@ SETUP    := setup.py
 TOX      := tox
 TOX_DIR  := .tox
 
-build_dir := build
-dist_dir  := dist
-src_dir   := src
-test_dir  := tests
+build_dir    := build
+dist_dir     := dist
+src_dir      := src
+package_name := tank_utility
+package_dir  := $(src_dir)/$(package_name)
+test_dir     := tests
 
 .PHONY: help
 help:
@@ -23,6 +26,10 @@ help:
 .PHONY: install-requirements
 install-requirements:
 	$(PIP) install --editable .[dev,test]
+
+.PHONY: lint
+lint:
+	$(PYLINT) $(package_dir)
 
 .PHONY: test
 test:
