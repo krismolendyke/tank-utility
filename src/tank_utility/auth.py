@@ -71,8 +71,9 @@ def get_token(username, password, force=False):
     """
     token = None if force else _get_cached_token()
     if not token:
-        response = requests.get(common.get_api_url(path="getToken"),
-                                auth=requests.auth.HTTPBasicAuth(username, password))
+        response = requests.get(
+            common.get_api_url(path="getToken"), auth=requests.auth.HTTPBasicAuth(username, password)
+        )
         response.raise_for_status()
         token = response.json()["token"]
         _cache_token(token)
