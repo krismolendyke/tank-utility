@@ -1,3 +1,4 @@
+GIT        := git
 PIP        := pip
 PRE_COMMIT := pre-commit
 PYLINT     := pylint
@@ -45,6 +46,18 @@ test:
 .PHONY: dist
 dist:
 	$(PYTHON) $(SETUP) sdist bdist_wheel
+
+.PHONY: push-tags
+push-tags:
+	$(GIT) push origin --tags
+
+.PHONY: release-test
+release-test: clean install-requirements format lint test push-tags
+	$(PYTHON) $(SETUP) sdist bdist_wheel upload -r test
+
+.PHONY: release
+release: clean install-requirements format lint test push-tags
+	$(PYTHON) $(SETUP) sdist bdist_wheel upload -r pypi
 
 .PHONY: clean
 clean:
