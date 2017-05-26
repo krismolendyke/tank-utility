@@ -7,6 +7,12 @@
     - id: name-tests-test
     - id: trailing-whitespace
 
+- repo: git://github.com/pre-commit/mirrors-pylint
+  sha: v1.7.1
+  hooks:
+    - id: pylint
+      args: [src/tank_utility]
+
 - repo: git://github.com/pre-commit/mirrors-yapf
   sha: v0.16.1
   hooks:
