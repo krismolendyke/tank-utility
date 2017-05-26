@@ -6,6 +6,7 @@ RM_FLAGS := -rf
 SETUP    := setup.py
 TOX      := tox
 TOX_DIR  := .tox
+YAPF     := yapf
 
 build_dir    := build
 dist_dir     := dist
@@ -30,6 +31,10 @@ install-requirements:
 .PHONY: lint
 lint:
 	$(PYLINT) $(package_dir)
+
+.PHONY: format
+format:
+	$(YAPF) --in-place --parallel --recursive $(src_dir)
 
 .PHONY: test
 test:
