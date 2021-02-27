@@ -1,3 +1,4 @@
+include LICENSE.txt
 recursive-include src VERSION
 graft src
 global-exclude *.pyc
