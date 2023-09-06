@@ -30,7 +30,7 @@ setup(
     package_dir={"": "src"},
     install_requires=[
         "requests>=2.0",
-        "urllib3[secure]"
+        "urllib3"
     ],
     extras_require={
         "dev": [
