@@ -1,6 +1,17 @@
 Release History
 ---------------
 
+1.5.1 (2026-10-11)
+++++++++++++++++++
+
+- Replace deprecated pkg_resources with importlib.resources for Python 3.14+ compatibility
+- Modernize project metadata and URLs
+
+1.5.0 (2023-10-07)
+++++++++++++++++++
+
+- Support latest requests
+
 1.4.1 (2022-08-21)
 ++++++++++++++++++
 

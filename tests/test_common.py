@@ -16,6 +16,11 @@ class CommonTestCase(unittest.TestCase):
         actual = common.get_api_url(token="token")
         self.assertEqual(expected, actual)
 
+    def test_version(self):
+        import tank_utility
+
+        self.assertEqual(tank_utility.__version__, "1.5.1")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

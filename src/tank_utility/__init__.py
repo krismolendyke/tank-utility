@@ -1,11 +1,17 @@
 """A smart propane monitor."""
 
+from importlib.resources import files
 import logging
-import os
-from tempfile import gettempdir
 
-from pkg_resources import resource_string
+try:
+    __version__ = files(__package__).joinpath("VERSION").read_text().strip()
+except Exception:  # pylint: disable=broad-except
+    from importlib.metadata import PackageNotFoundError, version
 
-__version__ = resource_string(__name__, "VERSION").decode()
+    try:
+        __version__ = version("tank-utility")
+    except PackageNotFoundError:
+        __version__ = "unknown"
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
+

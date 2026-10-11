@@ -22,9 +22,17 @@ setup(
     url="https://git.io/k20e",
     license="MIT",
     classifiers=[
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.6"
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
     ],
+    project_urls={
+        "Source": "https://github.com/krismolendyke/tank-utility",
+        "Bug Tracker": "https://github.com/krismolendyke/tank-utility/issues",
+    },
     keywords="propane monitor",
     packages=find_packages("src"),
     package_dir={"": "src"},
@@ -41,14 +49,12 @@ setup(
         ],
         "test": [
             "coverage",
-            "mock",
             "responses",
             "tox"
         ],
     },
-    package_data={},
+    package_data={"tank_utility": ["VERSION"]},
     include_package_data=True,
     data_files=[],
-    test_suite="tests",
     entry_points={"console_scripts": ["tank-utility = tank_utility.__main__:main"]}
 )
