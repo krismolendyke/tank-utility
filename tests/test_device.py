@@ -46,15 +46,16 @@ class DeviceTestCase(unittest.TestCase):
              mock.patch("tank_utility.device.auth._get_cached_token", autospec=True) as cached_token_mock:
             rsps.add(responses.GET, common.get_api_url(path="getToken"), status=requests.codes.ok,
                      json={"token": "expired-token"})
-            rsps.add(responses.GET, common.get_api_url(path="devices"), status=requests.codes.unauthorized,
+            rsps.add(responses.GET, common.get_api_url(token="expired-token", path="devices"),
+                     status=requests.codes.unauthorized,
                      json={"devices": ["test0", "test1"]})
             rsps.add(responses.GET, common.get_api_url(path="getToken"), status=requests.codes.ok,
                      json={"token": "token"})
-            rsps.add(responses.GET, common.get_api_url(path="devices"), status=requests.codes.ok,
+            rsps.add(responses.GET, common.get_api_url(token="token", path="devices"), status=requests.codes.ok,
                      json={"devices": ["test0", "test1"]})
-            rsps.add(responses.GET, common.get_api_url(path="devices/test0"), status=requests.codes.ok,
+            rsps.add(responses.GET, common.get_api_url(token="token", path="devices/test0"), status=requests.codes.ok,
                      json={"k0": "v0"})
-            rsps.add(responses.GET, common.get_api_url(path="devices/test1"), status=requests.codes.ok,
+            rsps.add(responses.GET, common.get_api_url(token="token", path="devices/test1"), status=requests.codes.ok,
                      json={"k1": "v1"})
             cached_token_mock.return_value = None
             expected = {"test0": {"k0": "v0"}, "test1": {"k1": "v1"}}

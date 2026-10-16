@@ -19,7 +19,7 @@ class CommonTestCase(unittest.TestCase):
     def test_version(self):
         import tank_utility
 
-        self.assertEqual(tank_utility.__version__, "1.5.1")
+        self.assertEqual(tank_utility.__version__, "1.5.2")
 
 
 if __name__ == "__main__":

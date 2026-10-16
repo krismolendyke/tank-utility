@@ -25,8 +25,28 @@ class AuthTestCase(unittest.TestCase):
              mock.patch("tank_utility.auth._cache_token", autospec=True) as cache_token_mock:
             cached_token_mock.return_value = None
             auth.get_token("user", "password")
-            cached_token_mock.assert_called_once_with()
-            cache_token_mock.assert_called_once_with("token")
+            cached_token_mock.assert_called_once_with("user")
+            cache_token_mock.assert_called_once_with("token", "user")
+
+    def test_token_cache_isolation(self):
+        user_a = "UserA@Example.com "
+        user_b = "userb@example.com"
+        path_a = auth._get_token_file_path(user_a)
+        path_b = auth._get_token_file_path(user_b)
+        self.assertNotEqual(path_a, path_b)
+        self.assertEqual(path_a, auth._get_token_file_path("usera@example.com"))
+        self.assertEqual(auth._get_token_file_path(""), auth.TOKEN_FILE_PATH)
+
+        try:
+            auth._cache_token("token-a", user_a)
+            auth._cache_token("token-b", user_b)
+            self.assertEqual(auth._get_cached_token("usera@example.com"), "token-a")
+            self.assertEqual(auth._get_cached_token(user_b), "token-b")
+        finally:
+            for p in (path_a, path_b):
+                if os.path.exists(p):
+                    os.remove(p)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

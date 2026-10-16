@@ -1,6 +1,12 @@
 Release History
 ---------------
 
+1.5.2 (2026-10-16)
+++++++++++++++++++
+
+- Isolate cached API token files per account
+- Reuse refreshed token for device data requests after a 401 retry in ``get_data()``
+
 1.5.1 (2026-10-11)
 ++++++++++++++++++
 
