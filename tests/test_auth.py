@@ -47,6 +47,18 @@ class AuthTestCase(unittest.TestCase):
                 if os.path.exists(p):
                     os.remove(p)
 
+    @staticmethod
+    def test_get_token_timeout():
+        with mock.patch("tank_utility.auth.requests.get", autospec=True) as get_mock, \
+             mock.patch("tank_utility.auth._get_cached_token", return_value=None, autospec=True), \
+             mock.patch("tank_utility.auth._cache_token", autospec=True):
+            get_mock.return_value.json.return_value = {"token": "token"}
+            auth.get_token("user", "password")
+            assert get_mock.call_args[1]["timeout"] == common.DEFAULT_TIMEOUT
+
+            auth.get_token("user", "password", timeout=5)
+            assert get_mock.call_args[1]["timeout"] == 5
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

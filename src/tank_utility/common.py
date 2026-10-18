@@ -9,6 +9,8 @@ except ImportError:
 PROPANE_API_PROTOCOL = "https"
 PROPANE_API_LOCATION = "data.tankutility.com"
 """The base location of the propane API."""
+DEFAULT_TIMEOUT = (10, 30)
+"""Default (connect, read) timeout in seconds for API requests."""
 
 
 def get_api_url(token="", path=""):

@@ -75,7 +75,7 @@ def _cache_token(token, username=""):
         logging.info("Cached token in %s", token_file_path)
 
 
-def get_token(username, password, force=False):
+def get_token(username, password, force=False, timeout=common.DEFAULT_TIMEOUT):
     """Get an API token.
 
     Unfortunately, the Tank Utility API only offers basic authentication and expires each API token after 24 hours.
@@ -83,6 +83,7 @@ def get_token(username, password, force=False):
     :param str username:
     :param str password:
     :param bool force: (optional) Get a new token even if one is currently cached
+    :param timeout: (optional) Connect/read timeout for API requests
     :rtype: :py:class:`str`
     :returns: An API token
     :raises requests.exceptions.HTTPError:
@@ -91,7 +92,9 @@ def get_token(username, password, force=False):
     token = None if force else _get_cached_token(username)
     if not token:
         response = requests.get(
-            common.get_api_url(path="getToken"), auth=requests.auth.HTTPBasicAuth(username, password)
+            common.get_api_url(path="getToken"),
+            auth=requests.auth.HTTPBasicAuth(username, password),
+            timeout=timeout,
         )
         response.raise_for_status()
         token = response.json()["token"]

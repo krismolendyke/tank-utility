@@ -14,4 +14,3 @@ except Exception:  # pylint: disable=broad-except
         __version__ = "unknown"
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
-
