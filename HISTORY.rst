@@ -1,6 +1,12 @@
 Release History
 ---------------
 
+1.5.3 (2026-10-18)
+++++++++++++++++++
+
+- Add finite connect and read timeouts to all API requests
+- Retry 401 Unauthorized responses on device detail requests in ``get_data()``
+
 1.5.2 (2026-10-16)
 ++++++++++++++++++
 

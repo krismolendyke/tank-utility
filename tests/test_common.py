@@ -19,7 +19,8 @@ class CommonTestCase(unittest.TestCase):
     def test_version(self):
         import tank_utility
 
-        self.assertEqual(tank_utility.__version__, "1.5.2")
+        self.assertEqual(tank_utility.__version__, "1.5.3")
+        self.assertEqual(common.DEFAULT_TIMEOUT, (10, 30))
 
 
 if __name__ == "__main__":
